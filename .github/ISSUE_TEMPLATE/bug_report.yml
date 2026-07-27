@@ -1,0 +1,75 @@
+name: Bug report
+description: Something doesn't work as expected
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the report. The four fields below determine most bugs in this
+        project, so please don't skip them.
+
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: What did you expect, and what did you get instead?
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Open a video (resolution / fps / codec, if you know them)
+        2. …
+        3. …
+    validations:
+      required: true
+
+  - type: dropdown
+    id: how-run
+    attributes:
+      label: How are you running it?
+      options:
+        - "./run.sh (source)"
+        - "Packaged VideoToSprite.app"
+        - "python -m videotosprite (manual venv)"
+    validations:
+      required: true
+
+  - type: input
+    id: os
+    attributes:
+      label: OS and chip
+      placeholder: "macOS 15.3, Apple Silicon (arm64)"
+    validations:
+      required: true
+
+  - type: input
+    id: python
+    attributes:
+      label: Python version
+      description: "Output of `python3 --version` (or `.venv/bin/python --version`)"
+      placeholder: "3.12.7"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: ffmpeg
+    attributes:
+      label: Where does your ffmpeg come from?
+      options:
+        - "Homebrew (brew install ffmpeg)"
+        - "The in-app Install ffmpeg button (~/.videotosprite/bin)"
+        - "Somewhere else / not installed"
+        - "Not sure"
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Terminal output
+      description: Any traceback or console output. Automatically formatted as code.
+      render: shell

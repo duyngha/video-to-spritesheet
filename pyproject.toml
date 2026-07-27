@@ -1,0 +1,61 @@
+[project]
+name = "videotosprite"
+version = "0.1.0"
+description = "Desktop app to turn short videos into sprites: trim, frame-rate control, PNG/sprite-sheet/GIF export and background removal (chroma key + AI)."
+readme = "README.md"
+license = "Apache-2.0"
+license-files = ["LICENSE"]
+authors = [{ name = "Siloé Bezerra Bispo" }]
+keywords = ["sprite", "spritesheet", "video", "ffmpeg", "gamedev", "flet", "animation"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Environment :: MacOS X",
+    "Intended Audience :: Developers",
+    "Intended Audience :: End Users/Desktop",
+    "Operating System :: MacOS :: MacOS X",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Multimedia :: Graphics",
+    "Topic :: Multimedia :: Video",
+    "Topic :: Games/Entertainment",
+]
+requires-python = ">=3.10,<3.13"
+dependencies = [
+    "flet==0.85.2",   # must match the `flet` CLI used by build_macos.sh (protocol-locked)
+    "numpy>=1.26,<3",
+    "opencv-python-headless>=4.9",
+    "Pillow>=10.2",
+    "rembg>=2.0.50",
+    "onnxruntime>=1.17",
+]
+
+[project.urls]
+Homepage = "https://github.com/siloebb/videoToSpriteDilo"
+Source = "https://github.com/siloebb/videoToSpriteDilo"
+Issues = "https://github.com/siloebb/videoToSpriteDilo/issues"
+
+[build-system]
+requires = ["setuptools>=77"]   # PEP 639 `license`/`license-files`
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[project.scripts]
+videotosprite = "videotosprite.app:main"
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+# --- Packaging with `flet build macos` ---
+[tool.flet]
+org = "com.siloe"
+product = "VideoToSprite"
+company = "Siloe"
+copyright = "Copyright (C) 2026"
+
+[tool.flet.app]
+path = "src"   # entry: src/main.py

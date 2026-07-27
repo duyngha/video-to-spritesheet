@@ -1,0 +1,23 @@
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
+build/
+dist/
+*.egg-info/
+output/
+.u2net/
+.coverage
+coverage.xml
+htmlcov/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+
+# editors / local env
+.idea/
+.vscode/
+.env
+
+# optional local test asset — see CONTRIBUTING.md
+/tests/sample.mp4

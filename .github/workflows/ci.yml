@@ -1,0 +1,61 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: pytest (${{ matrix.os }}, py${{ matrix.python-version }})
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest]
+        python-version: ["3.10", "3.11", "3.12"]
+        include:
+          # macOS is the only platform the in-app ffmpeg installer supports.
+          - os: macos-latest
+            python-version: "3.12"
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+          cache-dependency-path: |
+            requirements.txt
+            requirements-dev.txt
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements-dev.txt
+
+      - name: Install ffmpeg and generate the test clip
+        # Linux only: apt is fast, whereas `brew install ffmpeg` costs several
+        # minutes. Without the clip the two ffmpeg integration tests skip cleanly,
+        # so the macOS job still validates everything else.
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ffmpeg
+          ffmpeg -y -f lavfi -i testsrc=size=320x240:rate=30 -t 2 -pix_fmt yuv420p tests/sample.mp4
+
+      - name: Run tests
+        # HOME is redirected so the suite cannot touch a real ~/.videotosprite/config.json.
+        run: python -m pytest -q
+        env:
+          HOME: ${{ runner.temp }}/fake-home
