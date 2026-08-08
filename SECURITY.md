@@ -8,7 +8,7 @@ backported fixes.
 ## Reporting a vulnerability
 
 Please report privately via GitHub's
-[Security Advisories](https://github.com/siloebb/videoToSpriteDilo/security/advisories/new)
+[Security Advisories](https://github.com/siloebb/video-to-spritesheet/security/advisories/new)
 rather than opening a public issue. I'll acknowledge within a week.
 
 ## Scope notes

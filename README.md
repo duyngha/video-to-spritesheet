@@ -1,6 +1,6 @@
 # VideoToSprite
 
-[![CI](https://github.com/siloebb/videoToSpriteDilo/actions/workflows/ci.yml/badge.svg)](https://github.com/siloebb/videoToSpriteDilo/actions/workflows/ci.yml)
+[![CI](https://github.com/siloebb/video-to-spritesheet/actions/workflows/ci.yml/badge.svg)](https://github.com/siloebb/video-to-spritesheet/actions/workflows/ci.yml)
 [![License: Apache 2.0](https://img.shields.io/badge/license-Apache--2.0-blue.svg)](LICENSE)
 [![Python 3.10–3.12](https://img.shields.io/badge/python-3.10%E2%80%933.12-blue.svg)](https://www.python.org/)
 ![Platform: macOS](https://img.shields.io/badge/platform-macOS-lightgrey.svg)

@@ -32,9 +32,9 @@ dependencies = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/siloebb/videoToSpriteDilo"
-Source = "https://github.com/siloebb/videoToSpriteDilo"
-Issues = "https://github.com/siloebb/videoToSpriteDilo/issues"
+Homepage = "https://github.com/siloebb/video-to-spritesheet"
+Source = "https://github.com/siloebb/video-to-spritesheet"
+Issues = "https://github.com/siloebb/video-to-spritesheet/issues"
 
 [build-system]
 requires = ["setuptools>=77"]   # PEP 639 `license`/`license-files`
