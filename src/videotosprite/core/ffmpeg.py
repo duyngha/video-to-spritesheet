@@ -188,7 +188,8 @@ def extract_frames(
         "-ss", f"{start:.3f}", "-i", str(path),
         "-t", f"{duration:.3f}",
         "-vf", ",".join(vf),
-        "-vsync", "0", "-start_number", "1",
+        # -fps_mode replaces -vsync (removed in recent ffmpeg); needs ffmpeg >= 5.1.
+        "-fps_mode", "passthrough", "-start_number", "1",
         str(out_dir / "frame_%05d.png"),
     ]
     proc = subprocess.Popen(cmd, stderr=subprocess.PIPE, text=True)
